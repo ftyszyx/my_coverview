@@ -1,4 +1,15 @@
 {
   "language.en-US": "English",
-  "language.zh-CN": "简体中文"
+  "language.zh-CN": "简体中文",
+  "star_on_github": "⭐ 关注github",
+  "creating_cover_images_for_your_blogs_is_now_super_easy": "创建封面图像现在超级简单",
+  "create_now": "现在创建",
+  "why_cover_images_are_more_important_than_you_think": "为什么封面图像比你想的更重要？",
+  "around_7_million_blog_posts_are_published_daily": "每天大约有700万篇博客文章发布。随着新一代博客工具的出现，这个数字只会增加。",
+  "tip2": "一个好的封面图像可以比随机库存图像带来<span class='font-bold'>更高的转化率</span>。",
+  "tip3": "使用coverview，你可以在<span class='text-indigo-400'>几秒钟</span>内创建封面图像",
+  "add_your_blog_title_and_author_name": "添加你的博客标题和作者名称",
+  "customize_with_colors_fonts_and_icons": "使用颜色、字体和图标进行自定义",
+  "choose_your_style_from_different_themes": "从不同的主题中选择你的风格",
+  "unsplash_integration_custom_icon_for_personal_branding_and_more": "Unsplash集成，自定义图标用于个人品牌和更多。"
 }

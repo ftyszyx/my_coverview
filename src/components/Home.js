@@ -12,9 +12,11 @@ import step2 from "../assets/images/step2.png";
 
 import hashnodeLogo from "../assets/images/hashnode-logo.png";
 import devLogo from "../assets/images/dev-logo.png";
+import { useIntl } from "react-intl";
 
 import WallOfLove from "./walloflove";
 const Home = (props) => {
+  const intl = useIntl();
   return (
     <div className="">
       <div className="">
@@ -27,25 +29,25 @@ const Home = (props) => {
           <div className=" flex flex-row gap-2">
             <LanguageSwitcher onLanguageChange={props.onLanguageChange} />
             <a
-              href="https://github.com/rutikwankhade/CoverView"
+              href="https://github.com/ftyszyx/my_coverview"
               target="_blank"
               rel="noreferrer"
               className="hover:translate-x-2 flex items-center justify-center duration-300 bg-gray-700 group rounded-xl   text-white  ml-auto mr-4 font-Inter font-semibold "
             >
-              <span className="md:text-sm text-xs px-2 md:px-4 py-1 md:py-2">⭐ Star on Github</span>
+              <span className="md:text-sm text-xs px-2 md:px-4 py-1 md:py-2">{intl.formatMessage({ id: "star_on_github" })}</span>
             </a>
           </div>
         </div>
 
         <div className="  mx-auto md:px-20 py-6   flex flex-col items-center">
           <h1 className="md:w-7/12 md:mx-10 mx-6 my-10 text-center md:text-5xl text-4xl font-extrabold text-gray-700 font-Anek">
-            Creating cover images for your blogs is now super easy
+            {intl.formatMessage({ id: "creating_cover_images_for_your_blogs_is_now_super_easy" })}
           </h1>
           <Link
             to="/editor"
             className="hover:translate-x-2 duration-300 bg-gray-700 hover:bg-gray-800 group rounded-full border-4 border-gray-100 px-6 md:px-8 text-white md:text-2xl text-base mx-auto font-Poppins font-semibold md:p-4 p-2"
           >
-            <span className="md:text-2xl font-semibold text-lg">Create Now</span>
+            <span className="md:text-2xl font-semibold text-lg">{intl.formatMessage({ id: "create_now" })}</span>
           </Link>
         </div>
 
@@ -74,7 +76,7 @@ const Home = (props) => {
         <div className=" mx-auto flex flex-col md:w-10/12">
           <div className="w-full text-center mx-auto p-10 md:p-4 ">
             <h2 className="md:text-5xl md:w-9/12 mx-auto text-3xl px-4 font-bold font-Anek text-gray-700">
-              Why cover images are more important than you think?
+              {intl.formatMessage({ id: "why_cover_images_are_more_important_than_you_think" })}
             </h2>
           </div>
 
@@ -90,10 +92,10 @@ const Home = (props) => {
                   ></path>
                 </svg>
               </div>
-              <p className="md:text-2xl text-xl md:text-left text-center font-Nunito ">
-                Around <span className="font-bold">7 million</span> blog posts are published daily. And with the rise of new-age blogging tools, it
-                will only go up.
-              </p>
+              <p
+                className="md:text-2xl text-xl md:text-left text-center font-Nunito "
+                dangerouslySetInnerHTML={{ __html: intl.formatMessage({ id: "around_7_million_blog_posts_are_published_daily" }) }}
+              ></p>
             </div>
 
             <div className="p-10  rounded-xl  shadow-gray-100 flex  flex-col gap-4  md:w-4/12 ">
@@ -102,16 +104,18 @@ const Home = (props) => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                 </svg>
               </div>
-              <p className="md:text-2xl text-xl md:text-left text-center font-Nunito ">
-                A good cover image can lead to <span className="font-bold">higher conversion rate</span> than a random stock image.
-              </p>
+              <p
+                className="md:text-2xl text-xl md:text-left text-center font-Nunito "
+                dangerouslySetInnerHTML={{ __html: intl.formatMessage({ id: "tip2" }) }}
+              ></p>
             </div>
           </div>
         </div>
 
-        <h2 className="md:text-5xl text-3xl md:w-7/12 md:mx-auto mt-12 md:mt-32 mx-10 font-bold font-Anek text-center text-gray-700">
-          With coverview, you can create cover images in <span className="text-indigo-400">seconds</span>
-        </h2>
+        <h2
+          dangerouslySetInnerHTML={{ __html: intl.formatMessage({ id: "tip3" }) }}
+          className="md:text-5xl text-3xl md:w-7/12 md:mx-auto mt-12 md:mt-32 mx-10 font-bold font-Anek text-center text-gray-700"
+        ></h2>
 
         <div className="md:w-8/12 md:my-16 p-4 flex md:flex-row flex-col gap-4 mx-auto">
           <div className="md:w-1/2 md:border border-gray-50 md:shadow-sm md:shadow-gray-50 rounded-xl px-4 pt-6 flex flex-col md:mx-10">
@@ -119,7 +123,7 @@ const Home = (props) => {
               <div className="text-xl w-max mx-auto text-white py-1 px-4 font-Anek font-semibold bg-indigo-400  rounded-full ">Step 1</div>
 
               <p className="md:text-3xl text-2xl p-4 text-center mx-auto my-2 font-semibold font-Inter text-gray-700">
-                Add your blog title and author name
+                {intl.formatMessage({ id: "add_your_blog_title_and_author_name" })}
               </p>
             </div>
             <img src={step1} alt="preview" className="mt-2 w-10/12 mx-auto rounded-t-xl shadow-sm" />
@@ -130,7 +134,7 @@ const Home = (props) => {
               <div className="text-xl w-max mx-auto text-white py-1 px-4 font-Anek font-semibold bg-indigo-400  rounded-full ">Step 2</div>
 
               <p className="md:text-3xl text-2xl p-4  text-center mx-auto my-2 font-semibold font-Inter text-gray-700">
-                Customize with colors, fonts and icons
+                {intl.formatMessage({ id: "customize_with_colors_fonts_and_icons" })}
               </p>
             </div>
             <img src={step2} alt="preview" className="mt-auto mb-0 w-10/12 mx-auto rounded-t-xl shadow-sm" />
@@ -141,10 +145,12 @@ const Home = (props) => {
           <div className="text-center md:w-1/2 m-4">
             <div className="text-xl w-max mx-auto text-white py-1 px-4 font-Anek font-semibold bg-indigo-400  rounded-full ">Step 3</div>
             <p className="md:text-3xl mt-4 text-2xl pb-2  text-center mx-auto my-2 font-semibold font-Inter text-gray-700">
-              Choose your style from different themes
+              {intl.formatMessage({ id: "choose_your_style_from_different_themes" })}
             </p>
 
-            <p className="md:text-xl text-gray-500 text-lg">Unsplash integration, custom icon for personal branding and more.</p>
+            <p className="md:text-xl text-gray-500 text-lg">
+              {intl.formatMessage({ id: "unsplash_integration_custom_icon_for_personal_branding_and_more" })}
+            </p>
           </div>
 
           <div className="flex md:w-1/2 hideout p-6">

@@ -9,11 +9,20 @@ import Faq from "./Faq";
 function App() {
   const [locale, setLocale] = useState(defaultLocale);
   const routes = useMemo(() => {
-    const res = [];
-    res.push({
-      path: "/",
-      element: <Navigate to={`/${locale}`} />,
-    });
+    let res = [
+      {
+        path: "/",
+        element: <Navigate to={`/${locale}`} />,
+      },
+      {
+        path: "/editor",
+        element: <Navigate to={`/${locale}/editor`} />,
+      },
+      {
+        path: "/faq",
+        element: <Navigate to={`/${locale}/faq`} />,
+      },
+    ];
     SupportedLocales.forEach((locale) => {
       res.push({
         path: `/${locale}`,
