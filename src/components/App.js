@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { IntlProvider } from "react-intl";
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import { messages, defaultLocale, SupportedLocales } from "../lang";

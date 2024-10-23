@@ -29,7 +29,7 @@ export class LangHelper {
 
   static setLang(locale) {
     locale = locale.toLowerCase();
-    this._lang = Langs.find((item) => item.locale == locale);
+    this._lang = Langs.find((item) => item.locale === locale);
   }
 
   static getString(msg, ...args) {
