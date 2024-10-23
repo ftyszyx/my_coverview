@@ -40,3 +40,12 @@ export class LangHelper {
     return this._lang;
   }
 }
+
+export const messages = {
+  "en-US": en_us,
+  "zh-CN": zh_cn,
+};
+
+export const SupportedLocales = ["en-US", "zh-CN"];
+
+export const defaultLocale = "en-US";

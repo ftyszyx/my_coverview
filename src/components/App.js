@@ -1,22 +1,51 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useEffect, useMemo, useState } from "react";
+import { IntlProvider } from "react-intl";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
+import { messages, defaultLocale, SupportedLocales } from "../lang";
+import Home from "./Home";
+import Editor from "./Editor";
+import Faq from "./Faq";
 
-import Editor from './Editor';
-import Home from './Home'
-import Faq from './Faq';
+function App() {
+  const [locale, setLocale] = useState(defaultLocale);
+  const routes = useMemo(() => {
+    const res = [];
+    res.push({
+      path: "/",
+      element: <Navigate to={`/${locale}`} />,
+    });
+    SupportedLocales.forEach((locale) => {
+      res.push({
+        path: `/${locale}`,
+        element: (
+          <Home
+            onLanguageChange={(value) => {
+              setLocale(value);
+            }}
+          />
+        ),
+      });
+      res.push({
+        path: `/${locale}/editor`,
+        element: <Editor />,
+      });
+      res.push({
+        path: `/${locale}/faq`,
+        element: <Faq />,
+      });
+    });
+    return res;
+  }, [locale]);
+  console.log("cur locale", locale);
 
-const App = () => {
+  const router = createBrowserRouter(routes);
+  // Create language-specific route paths
 
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route exact path="/" element={<Home />} />
-                <Route exact path="/editor" element={<Editor />} />
-                <Route exact path="/faq" element={<Faq />} />
-            </Routes>
-        </BrowserRouter>
-    );
-
+  return (
+    <IntlProvider messages={messages[locale]} locale={locale} defaultLocale={defaultLocale}>
+      <RouterProvider router={router} />
+    </IntlProvider>
+  );
 }
 
 export default App;
