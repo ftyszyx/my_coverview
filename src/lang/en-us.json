@@ -11,5 +11,15 @@
   "add_your_blog_title_and_author_name": "Add your blog title and author name",
   "customize_with_colors_fonts_and_icons": "Customize with colors, fonts and icons",
   "choose_your_style_from_different_themes": "Choose your style from different themes",
-  "unsplash_integration_custom_icon_for_personal_branding_and_more": "Unsplash integration, custom icon for personal branding and more."
+  "unsplash_integration_custom_icon_for_personal_branding_and_more": "Unsplash integration, custom icon for personal branding and more.",
+  "blogTitle": "Blog Title",
+  "enterTitleHere": "Enter title here",
+  "author": "Author",
+  "enterAuthorHere": "Enter author here",
+  "icon": "Icon",
+  "uploadYourOwn": "Upload your own",
+  "font": "Font",
+  "resetAll": "Reset All",
+  "default_title": "",
+  "platform": "Platform"
 }

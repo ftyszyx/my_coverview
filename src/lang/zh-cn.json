@@ -11,5 +11,15 @@
   "add_your_blog_title_and_author_name": "添加你的博客标题和作者名称",
   "customize_with_colors_fonts_and_icons": "使用颜色、字体和图标进行自定义",
   "choose_your_style_from_different_themes": "从不同的主题中选择你的风格",
-  "unsplash_integration_custom_icon_for_personal_branding_and_more": "Unsplash集成，自定义图标用于个人品牌和更多。"
+  "unsplash_integration_custom_icon_for_personal_branding_and_more": "Unsplash集成，自定义图标用于个人品牌和更多。",
+  "blogTitle": "博客标题",
+  "enterTitleHere": "在这里输入标题",
+  "author": "作者",
+  "enterAuthorHere": "在这里输入作者",
+  "icon": "图标",
+  "uploadYourOwn": "上传你的图标",
+  "font": "字体",
+  "resetAll": "重置所有",
+  "default_title": "",
+  "platform": "平台"
 }

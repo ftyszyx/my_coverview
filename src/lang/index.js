@@ -48,4 +48,4 @@ export const messages = {
 
 export const SupportedLocales = ["en-US", "zh-CN"];
 
-export const defaultLocale = "en-US";
+export const defaultLocale = "zh-CN";
