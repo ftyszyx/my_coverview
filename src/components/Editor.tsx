@@ -17,6 +17,7 @@ const defaultSettings = {
   pattern: "",
   download: "PNG",
   author: "",
+  description: "",
   icon: defaultIcon,
   devIconOptions: [defaultIcon],
   font: "font-Anek",
@@ -121,6 +122,17 @@ function Editor() {
                         options={settings.devIconOptions}
                         formatOptionLabel={formatOptionLabel}
                         className="outline-none focus:outline-none items-center text-lg text-gray-700"
+                      />
+                    </div>
+
+                    {/* Description input */}
+                    <div className="flex flex-col m-2">
+                      <span className="font-medium text-sm pb-1">{intl.formatMessage({ id: "description" })}</span>
+                      <textarea
+                        value={settings.description}
+                        placeholder={intl.formatMessage({ id: "enterDescriptionHere" })}
+                        className="focus:outline-none border text-gray-700 text-lg rounded p-2 h-24"
+                        onChange={(e) => handleSettingChange("description", e.target.value)}
                       />
                     </div>
 

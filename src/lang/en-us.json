@@ -21,5 +21,8 @@
   "font": "Font",
   "resetAll": "Reset All",
   "default_title": "",
-  "platform": "Platform"
+  "platform": "Platform",
+  "twitter_share_text": "type your thoughts here, Try {weburl} by @zhangyuxin_new",
+  "description": "Description",
+  "enterDescriptionHere": "Enter description here"
 }
