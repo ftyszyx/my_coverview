@@ -1,9 +1,12 @@
-import React from "react";
 import { useIntl } from "react-intl";
-import { SupportedLocales } from "../lang";
+import { SupportedLocales } from "@/lang/index";
 import { useNavigate } from "react-router-dom";
 
-const LanguageSwitcher = ({ onLanguageChange }) => {
+interface LanguageSwitcherProps {
+  onLanguageChange: (lang: string) => void;
+}
+
+const LanguageSwitcher = ({ onLanguageChange }: LanguageSwitcherProps) => {
   const intl = useIntl();
   const goto = useNavigate();
 
@@ -16,7 +19,7 @@ const LanguageSwitcher = ({ onLanguageChange }) => {
       }}
       className="bg-gray-700 text-white rounded-md px-2 py-1"
     >
-      {SupportedLocales.map((locale) => (
+      {SupportedLocales.map((locale: string) => (
         <option key={locale} value={locale}>
           {intl.formatMessage({ id: `language.${locale}` })}
         </option>

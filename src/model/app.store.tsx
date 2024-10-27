@@ -1,19 +1,36 @@
+import { EditorSettings, Iconsetting, Imgset, Platform, TextSettings, Theme } from "@/entity/app.entity";
 import { create } from "zustand";
+const defaultTextSettings: TextSettings = { text: "", font: "", color: "#000000", fontSize: "16px" };
+const defaultIcon: Iconsetting = { label: "react", type_value: "react", src: "" };
+const defaultImg: Imgset = { imgurl: "", datastr: "" };
 
-const defaultSettings = {
-  title: "",
+interface AppStore {
+  settings: EditorSettings;
+  setSettings: (settings: EditorSettings) => void;
+  getSettings: () => EditorSettings;
+  resetSettings: () => void;
+  clearBgImg: () => void;
+}
+
+export const defaultSettings: EditorSettings = {
+  title: defaultTextSettings,
   bgColor: "#949ee5",
   pattern: "",
-  download: "PNG",
-  author: "",
-  description: "",
+  author: defaultTextSettings,
+  description: defaultTextSettings,
   icon: defaultIcon,
-  devIconOptions: [defaultIcon],
-  font: "font-Anek",
-  theme: "background",
-  customIcon: "",
-  platform: "hashnode",
+  theme: Theme.Background,
+  platform: Platform.Hashnode,
 };
 
-interface AppStore {}
-export const useAppStore = create < AppStore > ((set) => ({}));
+export const useAppStore = create<AppStore>((set, get) => ({
+  settings: defaultSettings,
+  setSettings: (settings: EditorSettings) => set({ settings }),
+  getSettings: () => get().settings,
+  resetSettings: () => set({ settings: defaultSettings }),
+  clearBgImg: () => {
+    const settings = get().settings;
+    settings.bgImg = defaultImg;
+    set({ settings });
+  },
+}));

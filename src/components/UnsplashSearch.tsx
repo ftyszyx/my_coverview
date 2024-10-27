@@ -1,53 +1,44 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import unsplash from "../utils/unsplashConfig";
-import { ImgContext } from "../utils/ImgContext";
+import { useAppStore } from "@/model/app.store";
+import { Photos } from "unsplash-js/dist/methods/search/types/response";
+import { Basic } from "unsplash-js/dist/methods/photos/types";
 
-const UnsplashSearch = ({ largeImgPreview }) => {
-  const [imageList, setImageList] = useState([]);
+const UnsplashSearch = () => {
+  const [imageList, setImageList] = useState<Photos>([]);
+  const setappset = useAppStore((state) => state.setSettings);
   const [searchText, setSearchText] = useState("setup");
-  const { setUnsplashImage } = useContext(ImgContext);
+  const appset = useAppStore((state) => state.settings);
 
   const searchImages = () => {
+    DoSearch();
+  };
+
+  const selectImage = (image: Basic) => {
+    setappset({ ...appset, bgImg: { imgurl: image.urls.regular } });
+  };
+
+  const handleSearchSubmit = (e: any) => {
+    e.preventDefault();
+    searchImages();
+  };
+
+  useEffect(() => {
+    DoSearch();
+  }, []);
+
+  function DoSearch() {
     unsplash.search
       .getPhotos({
         query: searchText,
         page: 1,
-        per_page: 30,
-        // orientation:'portrait'
+        perPage: 30,
       })
       .then((response) => {
         // console.log(response.response.results);
-        setImageList(response.response.results);
+        setImageList(response.response as Photos);
       });
-  };
-
-  const selectImage = (image) => {
-    setUnsplashImage({
-      url: image.urls.regular,
-      name: image.user.name,
-      avatar: image.user.profile_image.small,
-      profile: `${image.user.links.html}?utm_source=https://coverview.vercel.app&utm_medium=referral`,
-      downloadLink: image.links.download_location,
-    });
-  };
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    searchImages(searchText);
-  };
-
-  useEffect(() => {
-    unsplash.search
-      .getPhotos({
-        query: "setup",
-        page: 1,
-        per_page: 30,
-      })
-      .then((response) => {
-        // console.log(response.response.results);
-        setImageList(response.response.results);
-      });
-  }, []);
+  }
 
   return (
     <div className="w-full h-full">

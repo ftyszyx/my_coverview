@@ -25,5 +25,12 @@
   "platform": "平台",
   "twitter_share_text": "在这里输入你的想法，尝试 {weburl} 由 @zhangyuxin_new",
   "description": "描述",
-  "enterDescriptionHere": "在这里输入描述"
+  "enterDescriptionHere": "在这里输入描述",
+  "simple_quick_and_easy_to_use": "简单、快速、易于使用",
+  "so_you_can_focus_on_writing_your_blog_and_never_worry_about_those_cover_images": "这样你就可以专注于写作，再也不用担心那些封面图像了。",
+  "its_free_try_now": "免费试用",
+  "made_with_love_by": "由:{name}制作",
+  "how_to_use": "如何使用",
+  "platform_hashnode": "Hashnode",
+  "platform_dev": "Dev"
 }

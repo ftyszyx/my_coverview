@@ -1,84 +1,17 @@
-import React, { useState, useEffect, useCallback } from "react";
 import CoverImage from "./CoverImage";
 import ComponentToImg from "./ComponentToImg";
-import Select from "react-select";
-import RandomTheme from "./RandomTheme";
 import { ImgProvider } from "../utils/ImgContext";
 import Header from "./Header";
-
-import { THEMES } from "../utils/constants";
+import { THEMES } from "@/entity/app.entity";
 import { useIntl } from "react-intl";
-
-const defaultIcon = { label: "react", value: "react" };
-
-const defaultSettings = {
-  title: "",
-  bgColor: "#949ee5",
-  pattern: "",
-  download: "PNG",
-  author: "",
-  description: "",
-  icon: defaultIcon,
-  devIconOptions: [defaultIcon],
-  font: "font-Anek",
-  theme: "background",
-  customIcon: "",
-  platform: "hashnode",
-};
-
-const devIconsUrl = "https://raw.githubusercontent.com/devicons/devicon/master/devicon.json";
-
+import { useAppStore } from "@/model/app.store";
+import TextComp from "./TextComp";
+import { Platform } from "@/entity/app.entity";
 function Editor() {
   const intl = useIntl();
-  const [settings, setSettings] = useState(defaultSettings);
-
-  useEffect(() => {
-    fetch(devIconsUrl)
-      .then((r) => r.json())
-      .then((data) => {
-        data.unshift({ name: "upload your own" });
-        setSettings((prevSettings) => ({
-          ...prevSettings,
-          devIconOptions: data.map((item) => ({ value: item.name, label: item.name })),
-        }));
-      });
-  }, []);
-
-  const handleReset = useCallback(() => {
-    setSettings((prevSettings) => ({
-      ...defaultSettings,
-      devIconOptions: prevSettings.devIconOptions,
-    }));
-  }, []);
-
-  const getRandomTheme = useCallback((theme, Pattern) => {
-    setSettings((prevSettings) => ({
-      ...prevSettings,
-      bgColor: theme.bgColor,
-      borderColor: theme.bdColor,
-      pattern: Pattern,
-    }));
-  }, []);
-
-  const formatOptionLabel = useCallback(
-    ({ value, label }) => (
-      <div className="flex">
-        <span className="mr-2">{label}</span>
-        <div className="ml-auto mr-2">
-          <i className={`devicon-${value}-plain dev-icon text-2xl`}></i>
-        </div>
-      </div>
-    ),
-    []
-  );
-
-  const handleSettingChange = useCallback((key, value) => {
-    setSettings((prevSettings) => ({
-      ...prevSettings,
-      [key]: value,
-    }));
-  }, []);
-
+  const appset = useAppStore((x) => x.settings);
+  const setSettings = useAppStore((x) => x.setSettings);
+  const resetSettings = useAppStore((x) => x.resetSettings);
   return (
     <div className="max-w-[1400px] mx-auto">
       <Header />
@@ -93,91 +26,41 @@ function Editor() {
                     {/* Title input */}
                     <div className="m-2 flex flex-col">
                       <span className="font-medium text-sm pb-1">{intl.formatMessage({ id: "blogTitle" })}</span>
-                      <textarea
-                        value={settings.title}
-                        placeholder={intl.formatMessage({ id: "enterTitleHere" })}
-                        className="focus:outline-none border text-gray-700 text-lg rounded p-2 h-24"
-                        onChange={(e) => handleSettingChange("title", e.target.value)}
+                      <TextComp
+                        type="textarea"
+                        label={intl.formatMessage({ id: "blogTitle" })}
+                        info={appset.title}
+                        onChange={(value) => setSettings({ ...appset, title: value })}
                       />
                     </div>
 
                     {/* Author input */}
                     <div className="flex flex-col m-2">
                       <span className="font-medium text-sm pb-1">{intl.formatMessage({ id: "author" })}</span>
-                      <input
+                      <TextComp
                         type="text"
-                        value={settings.author}
-                        placeholder={intl.formatMessage({ id: "enterAuthorHere" })}
-                        className="focus:outline-none border text-gray-700 text-lg rounded bg-white p-2"
-                        onChange={(e) => handleSettingChange("author", e.target.value)}
-                      />
-                    </div>
-
-                    {/* Icon select */}
-                    <div className="flex flex-col m-2">
-                      <span className="font-medium text-sm pb-1">{intl.formatMessage({ id: "icon" })}</span>
-                      <Select
-                        value={settings.icon}
-                        onChange={(selectedOption) => handleSettingChange("icon", selectedOption)}
-                        options={settings.devIconOptions}
-                        formatOptionLabel={formatOptionLabel}
-                        className="outline-none focus:outline-none items-center text-lg text-gray-700"
+                        label={intl.formatMessage({ id: "author" })}
+                        info={appset.author}
+                        onChange={(value) => setSettings({ ...appset, author: value })}
                       />
                     </div>
 
                     {/* Description input */}
                     <div className="flex flex-col m-2">
-                      <span className="font-medium text-sm pb-1">{intl.formatMessage({ id: "description" })}</span>
-                      <textarea
-                        value={settings.description}
-                        placeholder={intl.formatMessage({ id: "enterDescriptionHere" })}
-                        className="focus:outline-none border text-gray-700 text-lg rounded p-2 h-24"
-                        onChange={(e) => handleSettingChange("description", e.target.value)}
+                      <TextComp
+                        type="textarea"
+                        label={intl.formatMessage({ id: "description" })}
+                        info={appset.description}
+                        onChange={(value) => setSettings({ ...appset, description: value })}
                       />
                     </div>
 
-                    {/* Custom icon upload */}
-                    {settings.icon.label === intl.formatMessage({ id: "uploadYourOwn" }) && (
-                      <div className="flex items-center justify-center w-64 mx-auto">
-                        <input
-                          type="file"
-                          className="focus:outline-none w-full text-sm cursor-pointer bg-white rounded border"
-                          onChange={(e) => handleSettingChange("customIcon", URL.createObjectURL(e.target.files[0]))}
-                        />
-                      </div>
-                    )}
-
-                    {/* Font and Color selectors */}
-                    <div className="flex items-center">
-                      {/* Font select */}
-                      <div className="flex flex-col m-2 w-1/2">
-                        <span className="font-medium text-sm pb-1">{intl.formatMessage({ id: "font" })}</span>
-                        <select
-                          value={settings.font}
-                          onChange={(e) => handleSettingChange("font", e.target.value)}
-                          className="focus:outline-none text-gray-700 text-lg p-2 rounded border"
-                        >
-                          <option>font-serif</option>
-                          <option>font-sans</option>
-                          <option>font-mono</option>
-                          <option>font-Inter</option>
-                          <option>font-Poppins</option>
-                          <option>font-Anek</option>
-                        </select>
-                      </div>
-
-                      {/* Color picker */}
-                      <div className="flex flex-col m-2 w-1/2">
-                        <span className="font-medium text-sm pb-1">Color</span>
-                        <div className="border rounded flex items-center p-1">
-                          <input
-                            type="color"
-                            value={settings.bgColor}
-                            onChange={(e) => handleSettingChange("bgColor", e.target.value)}
-                            className="h-8 w-full rounded"
-                          />
-                        </div>
-                      </div>
+                    <div className="flex items-center justify-center w-64 mx-auto">
+                      <input
+                        type="file"
+                        className="focus:outline-none w-full text-sm cursor-pointer bg-white rounded border"
+                        onChange={(e: any) => setSettings({ ...appset, icon: { ...appset.icon, src: URL.createObjectURL(e.target.files[0]) } })}
+                      />
                     </div>
 
                     {/* Platform select */}
@@ -185,12 +68,15 @@ function Editor() {
                       <div className="flex flex-col m-2 w-full">
                         <span className="font-medium text-sm pb-1">{intl.formatMessage({ id: "platform" })}</span>
                         <select
-                          onChange={(e) => handleSettingChange("platform", e.target.value)}
-                          value={settings.platform}
+                          onChange={(e) => setSettings({ ...appset, platform: e.target.value as Platform })}
+                          value={appset.platform}
                           className="focus:outline-none text-gray-700 text-lg p-2 rounded border"
                         >
-                          <option>{intl.formatMessage({ id: "hashnode" })}</option>
-                          <option>{intl.formatMessage({ id: "dev" })}</option>
+                          {Object.values(Platform).map((platform) => (
+                            <option key={platform} value={platform}>
+                              {intl.formatMessage({ id: "platform_" + platform })}
+                            </option>
+                          ))}
                         </select>
                       </div>
                     </div>
@@ -198,7 +84,9 @@ function Editor() {
                     {/* Reset button */}
                     <button
                       className="flex items-center bg-gray-700 hover:bg-gray-800 text-white rounded-lg mt-6 text-base p-1 px-4 mx-auto border"
-                      onClick={handleReset}
+                      onClick={() => {
+                        resetSettings();
+                      }}
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-white mr-2" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 16c1.671 0 3-1.331 3-3s-1.329-3-3-3-3 1.331-3 3 1.329 3 3 3z"></path>
@@ -214,8 +102,8 @@ function Editor() {
 
           {/* Cover image preview */}
           <div className="flex m-2 flex-col items-center justify-center">
-            <ComponentToImg downloadAs={settings.download}>
-              <CoverImage {...settings} />
+            <ComponentToImg>
+              <CoverImage />
             </ComponentToImg>
           </div>
 
@@ -224,18 +112,15 @@ function Editor() {
             <div className="h-99 w-full flex flex-col justify-center">
               <div className="flex items-center">
                 <h2 className="text-lg pl-2 font-inter font-semibold">Themes</h2>
-                <div className="ml-auto mr-1 p-2">
-                  <RandomTheme onThemeChange={getRandomTheme} />
-                </div>
               </div>
 
               <div className="flex gap-2 flex-wrap justify-center overflow-y-scroll">
-                {THEMES.map((themePlaceholder) => (
-                  <div className={`${themePlaceholder.label === settings.theme ? "border-blue-400 border-2" : ""}`} key={themePlaceholder.label}>
+                {THEMES.map((theme) => (
+                  <div className={`${theme.theme === appset.theme ? "border-blue-400 border-2" : ""}`} key={theme.label}>
                     <img
-                      src={themePlaceholder.preview}
-                      alt={themePlaceholder.label}
-                      onClick={() => handleSettingChange("theme", themePlaceholder.label)}
+                      src={theme.preview}
+                      alt={theme.label}
+                      onClick={() => setSettings({ ...appset, theme: theme.theme })}
                       className="cursor-pointer border border-gray-100 hover:border-gray-200 hover:scale-105 duration-300"
                     />
                   </div>

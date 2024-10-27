@@ -1,21 +1,22 @@
-import React from "react";
-import logo from "../assets/icons/logo.png";
+import logo from "@assets/icons/logo.png";
 import { Link } from "react-router-dom";
-import cover1 from "../assets/images/cover1.webp";
-import cover2 from "../assets/images/cover2.webp";
-import cover3 from "../assets/images/cover3.webp";
-import cover4 from "../assets/images/cover4.webp";
+import cover1 from "@assets/images/cover1.webp";
+import cover2 from "@assets/images/cover2.webp";
+import cover3 from "@assets/images/cover3.webp";
+import cover4 from "@assets/images/cover4.webp";
 import LanguageSwitcher from "./LanguageSwitcher";
 
-import step1 from "../assets/images/step1.png";
-import step2 from "../assets/images/step2.png";
+import step1 from "@assets/images/step1.png";
+import step2 from "@assets/images/step2.png";
 
-import hashnodeLogo from "../assets/images/hashnode-logo.png";
-import devLogo from "../assets/images/dev-logo.png";
 import { useIntl } from "react-intl";
 
-import WallOfLove from "./walloflove";
-const Home = (props) => {
+import { github_url } from "@/utils/constants";
+interface HomeProps {
+  onLanguageChange: (lang: string) => void;
+}
+
+const Home = (props: HomeProps) => {
   const intl = useIntl();
   return (
     <div className="">
@@ -166,50 +167,29 @@ const Home = (props) => {
           </div>
         </div>
 
-        <div className="md:w-6/12 md:my-20 mb-6 mx-auto">
-          <div className="text-center m-6 px-6">
-            <p className="md:text-2xl text-xl my-2 font-semibold font-Inter text-gray-700">Supports platforms like Hashnode or Dev.to</p>
-          </div>
-          <div className="flex mx-auto justify-center gap-4">
-            <img src={hashnodeLogo} className="md:w-20 w-10" alt="hashnode" />
-            <img src={devLogo} className="md:w-20 w-10" alt="dev" />
-          </div>
-        </div>
-
-        <WallOfLove />
-
         <div className="bg-gray-800  text-white p-2">
           <div className="md:w-8/12 mx-auto pt-32 p-6">
-            <h2 className="md:text-6xl text-4xl text-center font-Anek font-bold  mx-auto">Simple, quick, and easy to use</h2>
+            <h2 className="md:text-6xl text-4xl text-center font-Anek font-bold  mx-auto">
+              {intl.formatMessage({ id: "simple_quick_and_easy_to_use" })}
+            </h2>
             <p className="md:text-2xl text-lg font-Inter text-gray-300 text-center py-4 md:w-8/12 mx-auto">
-              So you can focus on writing your blog and never worry about those cover images.
+              {intl.formatMessage({ id: "so_you_can_focus_on_writing_your_blog_and_never_worry_about_those_cover_images" })}
             </p>
             <Link to="/editor">
               <button className="flex mx-auto my-4 hover:translate-x-2 duration-300 bg-indigo-500 hover:bg-indigo-600  rounded-full  text-white md:text-xl text-base font-Nunito font-semibold p-4 px-8">
-                It's Free! Try Now &rarr;
+                {intl.formatMessage({ id: "its_free_try_now" })} &rarr;
               </button>
             </Link>
           </div>
 
           <footer className=" p-10 gap-2 flex md:flex-row flex-col-reverse font-Inter md:px-20 md:justify-between justify-center mx-auto md:w-10/12 w-full items-center">
             <div className=" flex flex-col">
-              <span className="md:text-lg text-sm">
-                Made with 💛 by{" "}
-                <a href="https://rutik.dev" className="font-semibold underline decoration-wavy underline-offset-4" target="_blank" rel="noreferrer">
-                  Rutik Wankhade
-                </a>
-              </span>
+              <span className="md:text-lg text-sm">{intl.formatMessage({ id: "made_with_love_by" }, { name: "Rutik Wankhade" })}</span>
             </div>
 
             <div className="md:text-lg text-sm flex flex-wrap gap-4 ">
-              <Link to="/faq" className="hover:underline">
-                How to use
-              </Link>
-              <a href="https://github.com/rutikwankhade/CoverView" target="_blank" rel="noreferrer" className="hover:underline">
+              <a href={github_url} target="_blank" rel="noreferrer" className="hover:underline">
                 Github
-              </a>
-              <a href="https://www.buymeacoffee.com/rutikwankhade" target="_blank" rel="noreferrer" className="hover:underline">
-                Buy me a coffee
               </a>
             </div>
           </footer>

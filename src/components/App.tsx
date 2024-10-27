@@ -4,10 +4,9 @@ import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom"
 import { messages, defaultLocale, SupportedLocales } from "../lang";
 import Home from "./Home";
 import Editor from "./Editor";
-import Faq from "./Faq";
 
 function App() {
-  const [locale, setLocale] = useState(defaultLocale);
+  const [locale, setLocale] = useState<(typeof SupportedLocales)[number]>(defaultLocale);
   const routes = useMemo(() => {
     let res = [
       {
@@ -23,7 +22,7 @@ function App() {
         element: <Navigate to={`/${locale}/faq`} />,
       },
     ];
-    SupportedLocales.forEach((locale) => {
+    SupportedLocales.forEach((locale: string) => {
       res.push({
         path: `/${locale}`,
         element: (
@@ -37,10 +36,6 @@ function App() {
       res.push({
         path: `/${locale}/editor`,
         element: <Editor />,
-      });
-      res.push({
-        path: `/${locale}/faq`,
-        element: <Faq />,
       });
     });
     return res;
