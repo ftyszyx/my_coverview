@@ -26,7 +26,7 @@ const ComponentToImg = (props: ComponentToImgProps) => {
 
     const element = componentRef.current as HTMLDivElement;
 
-    let data = await domtoimage.toPng(componentRef.current, {
+    let data = await domtoimage.toPng(element, {
       height: element.offsetHeight * 2,
       width: element.offsetWidth * 2,
       style: {

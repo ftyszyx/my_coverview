@@ -11,7 +11,7 @@ function App() {
     let res = [
       {
         path: "/",
-        element: <Navigate to={`/${locale}`} />,
+        element: <Navigate to={`/${locale}/editor`} />,
       },
       {
         path: "/editor",
@@ -46,7 +46,7 @@ function App() {
   // Create language-specific route paths
 
   return (
-    <IntlProvider messages={messages[locale]} locale={locale} defaultLocale={defaultLocale}>
+    <IntlProvider messages={messages[locale as keyof typeof messages]} locale={locale} defaultLocale={defaultLocale}>
       <RouterProvider router={router} />
     </IntlProvider>
   );

@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const MobileMockupTheme = () => {
   const appset = useAppStore((set) => set.settings);
-  const [image, setImage] = useState();
+  const [image, setImage] = useState<string>();
 
   return (
     <div className={`bg-white w-full h-full`}>
@@ -41,7 +41,7 @@ const MobileMockupTheme = () => {
               <input
                 type="file"
                 className="text-sm  flex flex-col cursor-pointer mb-2 bg-white rounded border"
-                onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
+                onChange={(e: any) => setImage(URL.createObjectURL(e.target.files[0]))}
               />
               <span className=" text-center italic">click to upload a screenshot</span>
             </div>

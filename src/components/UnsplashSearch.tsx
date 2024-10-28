@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import unsplash from "../utils/unsplashConfig";
 import { useAppStore } from "@/model/app.store";
-import { Photos } from "unsplash-js/dist/methods/search/types/response";
 import { Basic } from "unsplash-js/dist/methods/photos/types";
 
 const UnsplashSearch = () => {
-  const [imageList, setImageList] = useState<Photos>([]);
+  const [imageList, setImageList] = useState<Basic[]>([]);
   const setappset = useAppStore((state) => state.setSettings);
   const [searchText, setSearchText] = useState("setup");
   const appset = useAppStore((state) => state.settings);
@@ -36,7 +35,7 @@ const UnsplashSearch = () => {
       })
       .then((response) => {
         // console.log(response.response.results);
-        setImageList(response.response as Photos);
+        setImageList(response.response?.results || []);
       });
   }
 
@@ -53,7 +52,7 @@ const UnsplashSearch = () => {
               onChange={(e) => setSearchText(e.target.value)}
             />
 
-            <button type="submit" onClick={() => searchImages(searchText)}>
+            <button type="submit" onClick={() => searchImages()}>
               <svg
                 className="w-9 h-9 ml-auto  p-2 bg-gray-700 hover:bg-gray-800 text-white rounded-full"
                 fill="none"
@@ -70,11 +69,11 @@ const UnsplashSearch = () => {
         <div className="overflow-y-scroll w-full pb-12 overflow-x-hidden h-max justify-center flex flex-wrap">
           {imageList.map((image) => {
             return (
-              <div key={image.id} className={`rounded-lg relative cursor-pointer m-1 ${largeImgPreview ? " h-44 w-60" : "h-24 w-40"}`}>
+              <div key={image.id} className={`rounded-lg relative cursor-pointer m-1  h-44 w-60 `}>
                 <span className="font-Inter top-2 left-2 absolute text-sm font-semibold text-white opacity-50 ">Click to Select</span>
                 <img
                   src={image.urls.regular}
-                  alt={image.alt_description}
+                  alt={image.alt_description || ""}
                   onClick={() => selectImage(image)}
                   className="rounded-lg object-cover h-full w-full"
                 />

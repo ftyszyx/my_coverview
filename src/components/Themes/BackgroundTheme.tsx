@@ -1,4 +1,5 @@
 import { useAppStore } from "@/model/app.store";
+import UnsplashSearch from "../UnsplashSearch";
 
 const BackgroundTheme = () => {
   const appset = useAppStore((state) => state.settings);
@@ -9,7 +10,7 @@ const BackgroundTheme = () => {
       <div className={` overflow-y-hidden flex flex-col`} style={{ backgroundColor: appset.bgColor }}>
         <div className="flex flex-row  items-center bg-white  justify-center ">
           <div className="w-full">
-            {
+            {appset.bgImg != null ? (
               <div className="relative flex group">
                 <div className="h-max w-full ">
                   <img src={appset.bgImg.datastr || appset.bgImg.imgurl} className=" object-cover h-full w-full  " alt="preview" />
@@ -41,7 +42,11 @@ const BackgroundTheme = () => {
                   </div>
                 </div>
               </div>
-            }
+            ) : (
+              <div className="flex h-max w-full flex-col bg-white items-center justify-center">
+                <UnsplashSearch />
+              </div>
+            )}
           </div>
         </div>
       </div>

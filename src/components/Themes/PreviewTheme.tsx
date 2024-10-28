@@ -4,7 +4,7 @@ import { useState } from "react";
 const PreviewTheme = () => {
   const appset = useAppStore((state) => state.settings);
 
-  const [image, setImage] = useState();
+  const [image, setImage] = useState<string>();
 
   return (
     <div className="w-full h-full bg-white">
@@ -38,7 +38,7 @@ const PreviewTheme = () => {
               <input
                 type="file"
                 className="text-xl cursor-pointer mb-2 bg-white rounded border"
-                onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))}
+                onChange={(e: any) => setImage(URL.createObjectURL(e.target.files[0]))}
               />
               <span className=" text-center italic">click to upload a screenshot</span>
             </div>
