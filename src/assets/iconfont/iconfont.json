@@ -1,0 +1,16 @@
+{
+  "id": "4727968",
+  "name": "coverview",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "2674929",
+      "name": "xiangxia",
+      "font_class": "xiangxia",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    }
+  ]
+}
