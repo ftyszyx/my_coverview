@@ -25,7 +25,6 @@ function Editor() {
                   <div>
                     {/* Title input */}
                     <div className="m-2 flex flex-col">
-                      <span className="font-medium text-sm pb-1">{intl.formatMessage({ id: "blogTitle" })}</span>
                       <TextComp
                         type="textarea"
                         label={intl.formatMessage({ id: "blogTitle" })}
@@ -36,7 +35,6 @@ function Editor() {
 
                     {/* Author input */}
                     <div className="flex flex-col m-2">
-                      <span className="font-medium text-sm pb-1">{intl.formatMessage({ id: "author" })}</span>
                       <TextComp
                         type="text"
                         label={intl.formatMessage({ id: "author" })}
