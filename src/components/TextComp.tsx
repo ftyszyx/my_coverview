@@ -14,7 +14,7 @@ export default function TextComp(props: TextCompProps) {
   const [showdetails, setShowDetails] = useState(false);
   const { info, onChange } = props;
   return (
-    <div className="border-[2px] border-gray-300 rounded-lg p-2 border-dashed">
+    <div className="border-[2px] border-gray-300 rounded-lg p-2 border-dashed flex flex-col">
       <label>{props.label}</label>
       {props.type === "text" ? (
         <input
