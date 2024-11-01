@@ -6,6 +6,10 @@ import { Basic } from "unsplash-js/dist/methods/photos/types";
 const UnsplashSearch = () => {
   const [imageList, setImageList] = useState<Basic[]>([]);
   const setappset = useAppStore((state) => state.setSettings);
+  const [page, setPage] = useState(1);
+  // const [total, setTotal] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const [perPage, setPerPage] = useState(12);
   const [searchText, setSearchText] = useState("setup");
   const appset = useAppStore((state) => state.settings);
 
@@ -24,16 +28,19 @@ const UnsplashSearch = () => {
 
   useEffect(() => {
     DoSearch();
-  }, []);
+  }, [page, perPage]);
 
   function DoSearch() {
     unsplash.search
       .getPhotos({
         query: searchText,
-        page: 1,
-        perPage: 30,
+        page,
+        perPage,
       })
       .then((response) => {
+        // console.log(response.response);
+        // setTotal(response.response?.total || 0);
+        setTotalPages(response.response?.total_pages || 0);
         // console.log(response.response.results);
         setImageList(response.response?.results || []);
       });
@@ -80,6 +87,28 @@ const UnsplashSearch = () => {
               </div>
             );
           })}
+        </div>
+        <div className="flex items-center gap-2 py-2">
+          <button
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+            disabled={page === 1}
+            className="px-3 py-1 bg-gray-200 rounded-md disabled:opacity-50"
+          >
+            Previous
+          </button>
+          <span className="text-sm">{`Page ${page} of ${totalPages}`}</span>
+          <button
+            onClick={() => setPage((p) => p + 1)}
+            disabled={page >= totalPages}
+            className="px-3 py-1 bg-gray-200 rounded-md disabled:opacity-50"
+          >
+            Next
+          </button>
+          <select value={perPage} onChange={(e) => setPerPage(Number(e.target.value))} className="ml-4 px-2 py-1 bg-gray-200 rounded-md">
+            <option value="12">12 per page</option>
+            <option value="24">24 per page</option>
+            <option value="36">36 per page</option>
+          </select>
         </div>
       </div>
     </div>
