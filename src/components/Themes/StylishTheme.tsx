@@ -18,7 +18,7 @@ const StylishTheme = () => {
           </div>
           <div className="w-1/2 h-full">
             {appset.bgImg != null ? (
-              <div className="relative w-full h-max flex group">
+              <div className="relative w-full -max flex group">
                 <img src={appset.bgImg.imgurl && appset.bgImg.datastr} className=" object-cover w-full h-full  " alt="preview" />
 
                 <button onClick={cleanbg} className="absolute  top-4 right-2 cursor-pointer">
@@ -34,7 +34,7 @@ const StylishTheme = () => {
                 </button>
               </div>
             ) : (
-              <div className="flex h-max w-full flex-col bg-white items-center justify-center">
+              <div className="flex  w-full flex-col bg-white items-center justify-center">
                 <UnsplashSearch />
               </div>
             )}

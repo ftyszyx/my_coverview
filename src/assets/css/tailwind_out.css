@@ -663,6 +663,10 @@ video {
   margin-bottom: 0.5rem !important;
 }
 
+.ml-4 {
+  margin-left: 1rem !important;
+}
+
 .ml-auto {
   margin-left: auto !important;
 }
@@ -697,10 +701,6 @@ video {
 
 .mt-auto {
   margin-top: auto !important;
-}
-
-.ml-4 {
-  margin-left: 1rem !important;
 }
 
 .flex {
@@ -770,6 +770,30 @@ video {
 
 .h-screen {
   height: 100vh !important;
+}
+
+.h-\[422px\] {
+  height: 422px !important;
+}
+
+.h-\[500px\] {
+  height: 500px !important;
+}
+
+.h-\[var\(--editor-view-height\)\] {
+  height: var(--editor-view-height) !important;
+}
+
+.h-\[100px\] {
+  height: 100px !important;
+}
+
+.h-\[var\(--editor-theme-height\)\] {
+  height: var(--editor-theme-height) !important;
+}
+
+.h-\[var\(--\$\{appset\.platform\}-theme-height\)\] {
+  height: var(--${appset.platform}-theme-height) !important;
 }
 
 .w-1\/2 {

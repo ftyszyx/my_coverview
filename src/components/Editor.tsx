@@ -18,7 +18,7 @@ function Editor() {
 
       <ImgProvider>
         <div className="flex md:flex-row flex-col">
-          <div className="bg-white flex flex-col h-100 md:w-3/12">
+          <div className="bg-white flex flex-col h-[100px] md:w-3/12">
             <div>
               <div className="flex md:flex-row flex-col">
                 <div className="bg-white font-Inter border-dashed border-r-2 border-gray-100 w-full p-4">
@@ -107,7 +107,7 @@ function Editor() {
 
           {/* Themes section */}
           <div className="md:w-60 px-4 border-dashed border-l-2 border-gray-100 bg-white">
-            <div className="h-99 w-full flex flex-col justify-center">
+            <div className="h-[var(--editor-theme-height)] w-full flex flex-col justify-center">
               <div className="flex items-center">
                 <h2 className="text-lg pl-2 font-inter font-semibold">Themes</h2>
               </div>

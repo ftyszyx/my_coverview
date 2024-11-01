@@ -3,23 +3,24 @@ import UnsplashSearch from "../UnsplashSearch";
 
 const BackgroundTheme = () => {
   const appset = useAppStore((state) => state.settings);
-  const setSettings = useAppStore((state) => state.setSettings);
+  const clearBgImg = useAppStore((state) => state.clearBgImg);
+  console.log("background theme render", appset.bgImg);
 
   return (
     <div className=" bg-white ">
-      <div className={` overflow-y-hidden flex flex-col`} style={{ backgroundColor: appset.bgColor }}>
+      <div className={` h-[var(--${appset.platform}-theme-height)] overflow-y-hidden flex flex-col`} style={{ backgroundColor: appset.bgColor }}>
         <div className="flex flex-row  items-center bg-white  justify-center ">
           <div className="w-full">
-            {appset.bgImg != null ? (
+            {appset.bgImg != undefined && appset.bgImg != null ? (
               <div className="relative flex group">
-                <div className="h-max w-full ">
+                <div className=" w-full ">
                   <img src={appset.bgImg.datastr || appset.bgImg.imgurl} className=" object-cover h-full w-full  " alt="preview" />
                 </div>
 
                 <div className="h-full bg-gray-800/60 absolute top-0 right-0 left-0 ">
                   <button
                     onClick={() => {
-                      setSettings({ ...appset, bgImg: { imgurl: "", datastr: "" } });
+                      clearBgImg();
                     }}
                     className="absolute  top-2 right-2 cursor-pointer"
                   >
@@ -43,7 +44,7 @@ const BackgroundTheme = () => {
                 </div>
               </div>
             ) : (
-              <div className="flex h-max w-full flex-col bg-white items-center justify-center">
+              <div className="flex  w-full flex-col bg-white items-center justify-center">
                 <UnsplashSearch />
               </div>
             )}

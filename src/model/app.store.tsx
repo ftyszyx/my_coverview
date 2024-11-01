@@ -2,7 +2,6 @@ import { EditorSettings, Iconsetting, Imgset, Platform, TextSettings, Theme } fr
 import { create } from "zustand";
 const defaultTextSettings: TextSettings = { text: "", font: "", color: "#000000", fontSize: "16px" };
 const defaultIcon: Iconsetting = { label: "react", type_value: "react", src: "" };
-const defaultImg: Imgset = { imgurl: "", datastr: "" };
 
 interface AppStore {
   settings: EditorSettings;
@@ -30,7 +29,8 @@ export const useAppStore = create<AppStore>((set, get) => ({
   resetSettings: () => set({ settings: defaultSettings }),
   clearBgImg: () => {
     const settings = get().settings;
-    settings.bgImg = defaultImg;
-    set({ settings });
+    const newset = { ...settings };
+    newset.bgImg = undefined;
+    set({ settings: newset });
   },
 }));
