@@ -12,7 +12,7 @@ export default defineConfig({
   },
   tools: {
     rspack: {
-      plugins: [new Dotenv()],
+      plugins: [new Dotenv({ systemvars: true })],
     },
   },
 });
