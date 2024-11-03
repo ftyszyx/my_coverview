@@ -10,3 +10,7 @@
 4. 标题、描述、图片 可选(完成)
 5. 使用 rspack 打包(完成)
 6. 可以上传背景图片
+
+## 访问
+
+https://makecover.1postpro.com/
