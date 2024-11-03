@@ -2,7 +2,7 @@ import CoverImage from "./CoverImage";
 import ComponentToImg from "./ComponentToImg";
 import { ImgProvider } from "../utils/ImgContext";
 import Header from "./Header";
-import { THEMES } from "@/entity/app.entity";
+import { NeedBgColor, NeedBgImg, THEMES } from "@/entity/app.entity";
 import { useIntl } from "react-intl";
 import { useAppStore } from "@/model/app.store";
 import TextComp from "./TextComp";
@@ -13,12 +13,12 @@ function Editor() {
   const setSettings = useAppStore((x) => x.setSettings);
   const resetSettings = useAppStore((x) => x.resetSettings);
   return (
-    <div className="max-w-[1400px] mx-auto">
+    <div className=" mx-auto">
       <Header />
 
       <ImgProvider>
         <div className="flex md:flex-row flex-col">
-          <div className="bg-white flex flex-col h-[100px] md:w-3/12">
+          <div className="bg-white flex flex-col h-[100px] w-3/12">
             <div>
               <div className="flex md:flex-row flex-col">
                 <div className="bg-white font-Inter border-dashed border-r-2 border-gray-100 w-full p-4">
@@ -53,16 +53,29 @@ function Editor() {
                       />
                     </div>
 
-                    <div className="flex items-center justify-center w-64 mx-auto">
-                      <input
-                        type="file"
-                        className="focus:outline-none w-full text-sm cursor-pointer bg-white rounded border"
-                        onChange={(e: any) => setSettings({ ...appset, icon: { ...appset.icon, src: URL.createObjectURL(e.target.files[0]) } })}
-                      />
-                    </div>
+                    {/* Background color input */}
+                    {NeedBgColor(appset.theme) && (
+                      <div className="flex flex-col m-2">
+                        <label>{intl.formatMessage({ id: "bgColor" })}</label>
+                        <input type="color" value={appset.bgColor} onChange={(e) => setSettings({ ...appset, bgColor: e.target.value })} />
+                      </div>
+                    )}
+                    {NeedBgImg(appset.theme) && (
+                      <div className="flex flex-col border-dashed border-2 border-gray-200 p-4">
+                        <label>{intl.formatMessage({ id: "upload_a_bg" })}</label>
+                        <input
+                          type="file"
+                          className="text-xl cursor-pointer mb-2 bg-white rounded border"
+                          onChange={(e: any) =>
+                            setSettings({ ...appset, bgImg: { ...appset.bgImg, datastr: URL.createObjectURL(e.target.files[0]) } })
+                          }
+                        />
+                        <span className=" text-center italic">{intl.formatMessage({ id: "click_to_select_bg" })}</span>
+                      </div>
+                    )}
 
                     {/* Platform select */}
-                    <div className="flex items-center">
+                    <div className="flexitems-center">
                       <div className="flex flex-col m-2 w-full">
                         <span className="font-medium text-sm pb-1">{intl.formatMessage({ id: "platform" })}</span>
                         <select
@@ -99,14 +112,14 @@ function Editor() {
           </div>
 
           {/* Cover image preview */}
-          <div className="flex m-2 flex-col items-center justify-center">
+          <div className="flex w-1/2 m-2 flex-col items-center justify-center">
             <ComponentToImg>
               <CoverImage />
             </ComponentToImg>
           </div>
 
           {/* Themes section */}
-          <div className="md:w-60 px-4 border-dashed border-l-2 border-gray-100 bg-white">
+          <div className=" w-3/12  px-4 border-dashed border-l-2 border-gray-100 bg-white">
             <div className="h-[var(--editor-theme-height)] w-full flex flex-col justify-center">
               <div className="flex items-center">
                 <h2 className="text-lg pl-2 font-inter font-semibold">Themes</h2>
@@ -119,7 +132,7 @@ function Editor() {
                       src={theme.preview}
                       alt={theme.label}
                       onClick={() => setSettings({ ...appset, theme: theme.theme })}
-                      className="cursor-pointer border border-gray-100 hover:border-gray-200 hover:scale-105 duration-300"
+                      className="max-w-[var(--editor-theme-width)] cursor-pointer border border-gray-100 hover:border-gray-200 hover:scale-105 duration-300"
                     />
                   </div>
                 ))}

@@ -1,11 +1,7 @@
 import "./CoverImage.css";
-import "../assets/css/patterns.css";
-import ModernTheme from "./Themes/ModernTheme";
 import BasicTheme from "./Themes/BasicTheme";
 import OutlineTheme from "./Themes/OutlineTheme";
-import PreviewTheme from "./Themes/PreviewTheme";
 import StylishTheme from "./Themes/StylishTheme";
-import MobileMockupTheme from "./Themes/MobileMockupTheme";
 import BackgroundTheme from "./Themes/BackgroundTheme";
 import { Theme } from "@/entity/app.entity";
 import { useAppStore } from "@/model/app.store";
@@ -18,16 +14,10 @@ const CoverImage = () => {
     switch (theme) {
       case Theme.Basic:
         return <BasicTheme />;
-      case Theme.Modern:
-        return <ModernTheme />;
       case Theme.Outline:
         return <OutlineTheme />;
-      case Theme.Preview:
-        return <PreviewTheme />;
       case Theme.Stylish:
         return <StylishTheme />;
-      case Theme.Mobile:
-        return <MobileMockupTheme />;
       case Theme.Background:
         return <BackgroundTheme />;
       default:
@@ -35,7 +25,9 @@ const CoverImage = () => {
     }
   };
 
-  return <div className={`border-2  border-gray-50 md:scale-100 scale-50 ${appset.platform}`}>{selectTheme(appset.theme)}</div>;
+  return (
+    <div className={`border-2  border-gray-50  ${appset.platform}-theme-height ${appset.platform}-theme-width`}>{selectTheme(appset.theme)}</div>
+  );
 };
 
 export default CoverImage;

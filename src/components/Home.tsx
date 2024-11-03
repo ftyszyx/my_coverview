@@ -12,11 +12,8 @@ import step2 from "@assets/images/step2.png";
 import { useIntl } from "react-intl";
 
 import { github_url } from "@/utils/constants";
-interface HomeProps {
-  onLanguageChange: (lang: string) => void;
-}
 
-const Home = (props: HomeProps) => {
+const Home = () => {
   const intl = useIntl();
   return (
     <div className="">
@@ -28,7 +25,7 @@ const Home = (props: HomeProps) => {
           </div>
 
           <div className=" flex flex-row gap-2">
-            <LanguageSwitcher onLanguageChange={props.onLanguageChange} />
+            <LanguageSwitcher />
             <a
               href="https://github.com/ftyszyx/my_coverview"
               target="_blank"

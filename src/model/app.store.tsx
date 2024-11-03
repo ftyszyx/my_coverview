@@ -1,6 +1,6 @@
-import { EditorSettings, Iconsetting, Imgset, Platform, TextSettings, Theme } from "@/entity/app.entity";
+import { EditorSettings, Font, Iconsetting, Platform, TextSettings, Theme } from "@/entity/app.entity";
 import { create } from "zustand";
-const defaultTextSettings: TextSettings = { text: "", font: "", color: "#000000", fontSize: "16px" };
+const defaultTextSettings: TextSettings = { text: "", font: Font.Serif, color: "#ffffff", fontSize: "16px" };
 const defaultIcon: Iconsetting = { label: "react", type_value: "react", src: "" };
 
 interface AppStore {
@@ -9,14 +9,17 @@ interface AppStore {
   getSettings: () => EditorSettings;
   resetSettings: () => void;
   clearBgImg: () => void;
+  language: string;
+  setLanguage: (language: string) => void;
+  getLanguage: () => string;
 }
 
 export const defaultSettings: EditorSettings = {
-  title: defaultTextSettings,
+  title: { ...defaultTextSettings, text: "Title" },
   bgColor: "#949ee5",
   pattern: "",
-  author: defaultTextSettings,
-  description: defaultTextSettings,
+  author: { ...defaultTextSettings, text: "Author" },
+  description: { ...defaultTextSettings, text: "Description" },
   icon: defaultIcon,
   theme: Theme.Background,
   platform: Platform.Hashnode,
@@ -24,13 +27,16 @@ export const defaultSettings: EditorSettings = {
 
 export const useAppStore = create<AppStore>((set, get) => ({
   settings: defaultSettings,
-  setSettings: (settings: EditorSettings) => set({ settings }),
+  setSettings: (settings: EditorSettings) => set({ ...get(), settings }),
   getSettings: () => get().settings,
-  resetSettings: () => set({ settings: defaultSettings }),
+  resetSettings: () => set({ ...get(), settings: defaultSettings }),
   clearBgImg: () => {
     const settings = get().settings;
     const newset = { ...settings };
     newset.bgImg = undefined;
-    set({ settings: newset });
+    set({ ...get(), settings: newset });
   },
+  language: "zh-CN",
+  setLanguage: (language: string) => set({ ...get(), language }),
+  getLanguage: () => get().language,
 }));

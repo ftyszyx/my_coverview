@@ -2,6 +2,7 @@ import { Font, InputTextType, TextSettings } from "@/entity/app.entity";
 import { useState } from "react";
 import Icon from "./Icon";
 import { IconType } from "@/entity/icon.entity";
+import { useIntl } from "react-intl";
 
 interface TextCompProps {
   type: InputTextType;
@@ -11,6 +12,7 @@ interface TextCompProps {
 }
 
 export default function TextComp(props: TextCompProps) {
+  const intl = useIntl();
   const [showdetails, setShowDetails] = useState(false);
   const { info, onChange } = props;
   return (
@@ -39,11 +41,15 @@ export default function TextComp(props: TextCompProps) {
 
       {showdetails && (
         <div className="flex items-center gap-2">
+          <label>{intl.formatMessage({ id: "font" })}</label>
           <select value={info.font} onChange={(e) => onChange({ ...info, font: e.target.value })}>
             {Object.keys(Font).map((font) => (
-              <option value={font}>{font}</option>
+              <option key={font} value={Font[font as keyof typeof Font]}>
+                {font}
+              </option>
             ))}
           </select>
+          <label>{intl.formatMessage({ id: "color" })}</label>
           <input type="color" value={info.color} onChange={(e) => onChange({ ...info, color: e.target.value })} />
         </div>
       )}

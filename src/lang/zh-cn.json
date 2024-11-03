@@ -32,5 +32,15 @@
   "made_with_love_by": "由:{name}制作",
   "how_to_use": "如何使用",
   "platform_hashnode": "Hashnode",
-  "platform_dev": "Dev"
+  "platform_dev": "Dev",
+  "color": "颜色",
+  "bgColor": "背景颜色",
+  "upload_a_bg": "上传一个背景",
+  "previous": "上一页",
+  "next": "下一页",
+  "pageof": "第{page}页，共{total}页",
+  "12perpage": "每页12张",
+  "24perpage": "每页24张",
+  "36perpage": "每页36张",
+  "click_to_select_bg": "点击选择背景图"
 }

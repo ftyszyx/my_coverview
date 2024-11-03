@@ -1,37 +1,32 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { IntlProvider } from "react-intl";
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import { messages, defaultLocale, SupportedLocales } from "../lang";
 import Home from "./Home";
 import Editor from "./Editor";
+import { useAppStore } from "@/model/app.store";
 
 function App() {
-  const [locale, setLocale] = useState<(typeof SupportedLocales)[number]>(defaultLocale);
+  const language = useAppStore((state) => state.language);
   const routes = useMemo(() => {
     let res = [
       {
         path: "/",
-        element: <Navigate to={`/${locale}/editor`} />,
+        element: <Navigate to={`/${language}/editor`} />,
       },
       {
         path: "/editor",
-        element: <Navigate to={`/${locale}/editor`} />,
+        element: <Navigate to={`/${language}/editor`} />,
       },
       {
         path: "/faq",
-        element: <Navigate to={`/${locale}/faq`} />,
+        element: <Navigate to={`/${language}/faq`} />,
       },
     ];
     SupportedLocales.forEach((locale: string) => {
       res.push({
         path: `/${locale}`,
-        element: (
-          <Home
-            onLanguageChange={(value) => {
-              setLocale(value);
-            }}
-          />
-        ),
+        element: <Home />,
       });
       res.push({
         path: `/${locale}/editor`,
@@ -39,14 +34,14 @@ function App() {
       });
     });
     return res;
-  }, [locale]);
-  console.log("cur locale", locale);
+  }, [language]);
+  console.log("cur locale", language);
 
   const router = createBrowserRouter(routes);
   // Create language-specific route paths
 
   return (
-    <IntlProvider messages={messages[locale as keyof typeof messages]} locale={locale} defaultLocale={defaultLocale}>
+    <IntlProvider messages={messages[language as keyof typeof messages]} locale={language} defaultLocale={defaultLocale}>
       <RouterProvider router={router} />
     </IntlProvider>
   );

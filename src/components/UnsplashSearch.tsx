@@ -2,16 +2,17 @@ import { useState, useEffect } from "react";
 import unsplash from "../utils/unsplashConfig";
 import { useAppStore } from "@/model/app.store";
 import { Basic } from "unsplash-js/dist/methods/photos/types";
+import { useIntl } from "react-intl";
 
 const UnsplashSearch = () => {
   const [imageList, setImageList] = useState<Basic[]>([]);
   const setappset = useAppStore((state) => state.setSettings);
   const [page, setPage] = useState(1);
-  // const [total, setTotal] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [perPage, setPerPage] = useState(12);
   const [searchText, setSearchText] = useState("setup");
   const appset = useAppStore((state) => state.settings);
+  const intl = useIntl();
 
   const searchImages = () => {
     DoSearch();
@@ -38,16 +39,13 @@ const UnsplashSearch = () => {
         perPage,
       })
       .then((response) => {
-        // console.log(response.response);
-        // setTotal(response.response?.total || 0);
         setTotalPages(response.response?.total_pages || 0);
-        // console.log(response.response.results);
         setImageList(response.response?.results || []);
       });
   }
 
   return (
-    <div className="w-full h-full">
+    <div className=" h-full ">
       <div className="flex flex-col p-2  bg-white items-center justify-center">
         <div className="flex items-center w-full px-6 ">
           <form onSubmit={(e) => handleSearchSubmit(e)} className=" mx-auto w-full flex bg-gray-50 rounded-full border border-gray-50 mb-2">
@@ -94,20 +92,20 @@ const UnsplashSearch = () => {
             disabled={page === 1}
             className="px-3 py-1 bg-gray-200 rounded-md disabled:opacity-50"
           >
-            Previous
+            {intl.formatMessage({ id: "previous" })}
           </button>
-          <span className="text-sm">{`Page ${page} of ${totalPages}`}</span>
+          <span className="text-sm">{`${intl.formatMessage({ id: "pageof" }, { page, total: totalPages })}`}</span>
           <button
             onClick={() => setPage((p) => p + 1)}
             disabled={page >= totalPages}
             className="px-3 py-1 bg-gray-200 rounded-md disabled:opacity-50"
           >
-            Next
+            {intl.formatMessage({ id: "next" })}
           </button>
           <select value={perPage} onChange={(e) => setPerPage(Number(e.target.value))} className="ml-4 px-2 py-1 bg-gray-200 rounded-md">
-            <option value="12">12 per page</option>
-            <option value="24">24 per page</option>
-            <option value="36">36 per page</option>
+            <option value="12">{intl.formatMessage({ id: "12perpage" })}</option>
+            <option value="24">{intl.formatMessage({ id: "24perpage" })}</option>
+            <option value="36">{intl.formatMessage({ id: "36perpage" })}</option>
           </select>
         </div>
       </div>

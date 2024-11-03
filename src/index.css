@@ -2,6 +2,7 @@
 :root {
   --editor-view-height: 500px;
   --editor-theme-height: 600px;
+  --editor-theme-width: 300px;
   --hashnode-theme-height: 420px;
   --hashnode-theme-width: 800px;
 }

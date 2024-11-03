@@ -2,10 +2,8 @@ export enum Font {
   Serif = "font-serif",
   Sans = "font-sans",
   Mono = "font-mono",
-  Inter = "font-Inter",
-  Poppins = "font-Poppins",
-  Anek = "font-Anek",
 }
+
 export type InputTextType = "text" | "textarea";
 
 export interface TextSettings {
@@ -23,17 +21,20 @@ export interface Iconsetting {
 
 export enum Theme {
   Basic = "basic",
-  Modern = "modern",
   Outline = "outline",
-  Preview = "preview",
   Stylish = "stylish",
-  Mobile = "mobile",
   Background = "background",
+}
+
+export function NeedBgColor(theme: Theme) {
+  return theme === Theme.Stylish || theme === Theme.Basic || theme == Theme.Outline;
+}
+export function NeedBgImg(theme: Theme) {
+  return theme === Theme.Stylish || theme === Theme.Background;
 }
 
 export enum Platform {
   Hashnode = "hashnode",
-  Dev = "dev",
 }
 
 export interface ThemeItem {
@@ -61,11 +62,8 @@ export interface EditorSettings {
 
 import backgroundThemePlaceholder from "../assets/images/background-theme-placeholder.webp";
 import basicThemePlaceholder from "../assets/images/basic-theme-placeholder.webp";
-import modernThemePlaceholder from "../assets/images/modern-theme-placeholder.webp";
 import stylishThemePlaceholder from "../assets/images/stylish-theme-placeholder.webp";
 import outlineThemePlaceholder from "../assets/images/outline-theme-placeholder.webp";
-import previewThemePlaceholder from "../assets/images/preview-theme-placeholder.webp";
-import mobileThemePlaceholder from "../assets/images/mobile-theme-placeholder.webp";
 
 export const THEMES: ThemeItem[] = [
   {
@@ -84,23 +82,8 @@ export const THEMES: ThemeItem[] = [
     theme: Theme.Basic,
   },
   {
-    label: "modern",
-    preview: modernThemePlaceholder,
-    theme: Theme.Modern,
-  },
-  {
     label: "outline",
     preview: outlineThemePlaceholder,
     theme: Theme.Outline,
-  },
-  {
-    label: "preview",
-    preview: previewThemePlaceholder,
-    theme: Theme.Preview,
-  },
-  {
-    label: "mobile",
-    preview: mobileThemePlaceholder,
-    theme: Theme.Mobile,
   },
 ];

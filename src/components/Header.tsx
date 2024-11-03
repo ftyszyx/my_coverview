@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import logo from "../assets/icons/logo.png";
 import { useIntl } from "react-intl";
 import { website_url, github_url, APP_NAME } from "../utils/constants";
+import LanguageSwitcher from "./LanguageSwitcher";
 const Header = () => {
   const intl = useIntl();
   const tweetText = encodeURIComponent(`${intl.formatMessage({ id: "twitter_share_text" }, { weburl: website_url })}`);
@@ -14,6 +15,7 @@ const Header = () => {
       </Link>
 
       <div className="ml-auto md:mr-4 flex items-center ">
+        <LanguageSwitcher />
         {/* <Link to="/faq" className="text-gray-700 hover:text-gray-800 text-base font-Nunito mx-4"><span className="hidden md:inline-block">How to use</span></Link> */}
         <a
           href={github_url}

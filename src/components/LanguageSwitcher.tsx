@@ -1,12 +1,10 @@
 import { useIntl } from "react-intl";
 import { SupportedLocales } from "@/lang/index";
 import { useNavigate } from "react-router-dom";
+import { useAppStore } from "@/model/app.store";
 
-interface LanguageSwitcherProps {
-  onLanguageChange: (lang: string) => void;
-}
-
-const LanguageSwitcher = ({ onLanguageChange }: LanguageSwitcherProps) => {
+const LanguageSwitcher = () => {
+  const setLanguage = useAppStore((state) => state.setLanguage);
   const intl = useIntl();
   const goto = useNavigate();
 
@@ -15,7 +13,7 @@ const LanguageSwitcher = ({ onLanguageChange }: LanguageSwitcherProps) => {
       value={intl.locale}
       onChange={(e) => {
         goto("/", { replace: true });
-        onLanguageChange(e.target.value);
+        setLanguage(e.target.value);
       }}
       className="bg-gray-700 text-white rounded-md px-2 py-1"
     >

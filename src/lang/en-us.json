@@ -29,5 +29,15 @@
   "so_you_can_focus_on_writing_your_blog_and_never_worry_about_those_cover_images": "So you can focus on writing your blog and never worry about those cover images.",
   "its_free_try_now": "It's Free! Try Now &rarr;",
   "made_with_love_by": "Made with 💛 by {name}",
-  "how_to_use": "How to use"
+  "how_to_use": "How to use",
+  "bgColor": "Background Color",
+  "color": "Color",
+  "upload_a_bg": "Upload a background",
+  "click_to_select_bg": "Click to select background",
+  "previous": "Previous",
+  "next": "Next",
+  "pageof": "Page {page} of {total}",
+  "12perpage": "12 per page",
+  "24perpage": "24 per page",
+  "36perpage": "36 per page"
 }
