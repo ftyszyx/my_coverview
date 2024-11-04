@@ -122,7 +122,7 @@ function Editor() {
           <div className=" w-3/12  px-4 border-dashed border-l-2 border-gray-100 bg-white">
             <div className="h-[var(--editor-theme-height)] w-full flex flex-col justify-center">
               <div className="flex items-center">
-                <h2 className="text-lg pl-2 font-inter font-semibold">Themes</h2>
+                <h2 className="text-lg pl-2 font-inter font-semibold">{intl.formatMessage({ id: "theme" })}</h2>
               </div>
 
               <div className="flex gap-2 flex-wrap justify-center overflow-y-scroll">

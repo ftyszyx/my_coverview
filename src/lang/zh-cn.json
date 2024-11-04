@@ -42,5 +42,7 @@
   "12perpage": "每页12张",
   "24perpage": "每页24张",
   "36perpage": "每页36张",
-  "click_to_select_bg": "点击选择背景图"
+  "click_to_select_bg": "点击选择背景图",
+  "download": "下载",
+  "theme": "主题"
 }

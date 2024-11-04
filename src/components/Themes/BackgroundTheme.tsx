@@ -29,7 +29,7 @@ const BackgroundTheme = () => {
               </div>
             ) : (
               <div className="flex  w-full flex-col bg-white items-center justify-center">
-                <UnsplashSearch />
+                <UnsplashSearch pic_width={240} pic_height={176} />
               </div>
             )}
           </div>

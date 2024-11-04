@@ -21,7 +21,7 @@ const CoverImage = () => {
       case Theme.Background:
         return <BackgroundTheme />;
       default:
-        return <UnsplashSearch />;
+        return <UnsplashSearch pic_width={240} pic_height={176} />;
     }
   };
 

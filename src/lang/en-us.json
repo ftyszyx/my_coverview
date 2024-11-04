@@ -39,5 +39,7 @@
   "pageof": "Page {page} of {total}",
   "12perpage": "12 per page",
   "24perpage": "24 per page",
-  "36perpage": "36 per page"
+  "36perpage": "36 per page",
+  "download": "Download",
+  "theme": "Theme"
 }

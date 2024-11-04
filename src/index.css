@@ -1,6 +1,6 @@
 @charset "utf-8";
 :root {
-  --editor-view-height: 500px;
+  --editor-view-height: 400px;
   --editor-theme-height: 600px;
   --editor-theme-width: 300px;
   --hashnode-theme-height: 420px;

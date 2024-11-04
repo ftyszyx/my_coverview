@@ -3,8 +3,12 @@ import unsplash from "../utils/unsplashConfig";
 import { useAppStore } from "@/model/app.store";
 import { Basic } from "unsplash-js/dist/methods/photos/types";
 import { useIntl } from "react-intl";
+interface UnsplashSearchProps {
+  pic_width: number;
+  pic_height: number;
+}
 
-const UnsplashSearch = () => {
+const UnsplashSearch = (props: UnsplashSearchProps) => {
   const [imageList, setImageList] = useState<Basic[]>([]);
   const setappset = useAppStore((state) => state.setSettings);
   const [page, setPage] = useState(1);
@@ -45,8 +49,8 @@ const UnsplashSearch = () => {
   }
 
   return (
-    <div className=" h-full ">
-      <div className="flex flex-col p-2  bg-white items-center justify-center">
+    <div className="h-full">
+      <div className="flex flex-col p-2  bg-white items-center justify-center h-full">
         <div className="flex items-center w-full px-6 ">
           <form onSubmit={(e) => handleSearchSubmit(e)} className=" mx-auto w-full flex bg-gray-50 rounded-full border border-gray-50 mb-2">
             <input
@@ -70,11 +74,13 @@ const UnsplashSearch = () => {
             </button>
           </form>
         </div>
-
-        <div className={` overflow-y-scroll w-full pb-12 overflow-x-hidden  justify-center flex flex-wrap`}>
+        <div
+          style={{ height: `var(--editor-view-height)` }}
+          className={` overflow-y-scroll w-full pb-12 overflow-x-hidden  justify-center flex flex-wrap`}
+        >
           {imageList.map((image) => {
             return (
-              <div key={image.id} className={`rounded-lg relative cursor-pointer m-1  h-44 w-60 `}>
+              <div key={image.id} className={`rounded-lg relative cursor-pointer m-1 `} style={{ width: props.pic_width, height: props.pic_height }}>
                 <span className="font-Inter top-2 left-2 absolute text-sm font-semibold text-white opacity-50 ">Click to Select</span>
                 <img
                   src={image.urls.regular}

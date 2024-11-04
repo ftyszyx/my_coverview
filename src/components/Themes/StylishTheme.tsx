@@ -9,8 +9,8 @@ const StylishTheme = () => {
   console.log("stylish theme render", appset);
   const cleanbg = useAppStore((state) => state.clearBgImg);
   return (
-    <div className=" bg-white w-full h-full">
-      <div className={` overflow-y-hidden flex flex-col`}>
+    <div className=" bg-white ">
+      <div>
         <div className="flex flex-row  items-center   justify-center">
           <div
             className={` flex flex-col items-center justify-center w-1/2  rounded-l-xl ${appset.platform}-theme-height`}
@@ -26,7 +26,7 @@ const StylishTheme = () => {
               </div>
             ) : (
               <div className="flex  w-full flex-col bg-white items-center justify-center">
-                <UnsplashSearch />
+                <UnsplashSearch pic_width={160} pic_height={90} />
               </div>
             )}
           </div>
