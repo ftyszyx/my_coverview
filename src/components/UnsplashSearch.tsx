@@ -43,6 +43,7 @@ const UnsplashSearch = (props: UnsplashSearchProps) => {
         perPage,
       })
       .then((response) => {
+        // console.log(response.response);
         setTotalPages(response.response?.total_pages || 0);
         setImageList(response.response?.results || []);
       });

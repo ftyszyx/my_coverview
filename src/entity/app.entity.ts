@@ -35,6 +35,7 @@ export function NeedBgImg(theme: Theme) {
 
 export enum Platform {
   Hashnode = "hashnode",
+  Wechat = "wechat",
 }
 
 export interface ThemeItem {

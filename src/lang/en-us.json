@@ -41,5 +41,7 @@
   "24perpage": "24 per page",
   "36perpage": "36 per page",
   "download": "Download",
-  "theme": "Theme"
+  "theme": "Theme",
+  "platform_hashnode": "Hashnode",
+  "platform_wechat": "Wechat"
 }

@@ -5,6 +5,8 @@
   --editor-theme-width: 300px;
   --hashnode-theme-height: 420px;
   --hashnode-theme-width: 800px;
+  --wechat-theme-height: 340px;
+  --wechat-theme-width: 800px;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap?crossorigin=anonymous");

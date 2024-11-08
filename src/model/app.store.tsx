@@ -22,7 +22,7 @@ export const defaultSettings: EditorSettings = {
   description: { ...defaultTextSettings, text: "Description" },
   icon: defaultIcon,
   theme: Theme.Background,
-  platform: Platform.Hashnode,
+  platform: Platform.Wechat,
 };
 
 export const useAppStore = create<AppStore>((set, get) => ({

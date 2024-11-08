@@ -6,6 +6,14 @@
   width: var(--hashnode-theme-width);
 }
 
+.wechat-theme-height {
+  height: var(--wechat-theme-height);
+}
+
+.wechat-theme-width {
+  width: var(--wechat-theme-width);
+}
+
 .font-serif {
   font-family: serif;
 }
